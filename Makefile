@@ -1,29 +1,20 @@
 CC 			= gcc
-CFLAGS 		= -c -Wall -Wextra -Werror
-NAME 		= sudoku.a
-SRCS 		= src/sudoku_solver.c
+CFLAGS 		= -Wall -Wextra -Werror
+NAME 		= sudoku_solver
+SRCS 		= src/sudoku_solver.c \
+			  src/main.c
 
-OBJS 		= $(SRCS:.s=.o)
-BUILT 		= echo "\033[32m$@ built!\033[0m"
+all: $(NAME)	
 
-all: $(NAME)	# if library $(NAME) doesn't exist - create!
+$(NAME):
+	@$(CC) $(CFLAGS) $(SRCS) -o $@
 
-%.o: %.c
-	@$(CC) $(CFLAGS) $^ -o $@
-
-$(NAME): $(OBJS)	# $(OBJS) stands for all the files with .o extension
-	@ar -rc $@ $^
-	@$(BUILT)
-	
-test:
-	@$(CC) src/main.c -L. $(NAME) -o $@
+run:
+	@./$(NAME)
 
 clean:
-	@/bin/rm -rf $(OBJS)
+	@/bin/rm -rf $(NAME)
 
-fclean: clean
-	@/bin/rm -rf $(NAME) test
+re: clean all
 
-re: fclean all
-
-.PHONY: all clean fclean re
+.PHONY: all clean re
