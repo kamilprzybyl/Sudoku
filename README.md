@@ -8,8 +8,8 @@ Backtracking is a general algorithm for finding all solutions to some computatio
 
 # Setup
 ```
-$ git clone https://github.com/kamilprzybyl/Sudoku.git Sudoku
-$ cd Sudoku
-$ make
-$ make run
+git clone https://github.com/kamilprzybyl/Sudoku.git Sudoku
+cd Sudoku
+make
+make run
 ```
